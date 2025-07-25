@@ -13,7 +13,6 @@ def get_clean_data():
         data['PCOS (Y/N)'] = data['PCOS (Y/N)'].map({'Y': 1, 'N': 0})
 
     return data
-print(data.columns.tolist())
 
 def plot_data(df):
     plot = df['PCOS (Y/N)'].value_counts().plot(
