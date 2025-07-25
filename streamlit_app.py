@@ -1,7 +1,7 @@
 import streamlit as st
 import pickle
 import pandas as pd
-
+import matplotlib.pyplot as plt
 
 def get_clean_data():
     data = pd.read_csv("Data/PCOS_data_infertility.csv")
