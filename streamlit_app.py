@@ -11,6 +11,13 @@ def get_clean_data():
   data['PCOS (Y/N)'] = data['PCOS (Y/N)'].map({ 'Y': 1, 'N': 0 })
   
   return data
+
+def plot_data(df):
+    plot = df['PCOS (Y/N)'].value_counts().plot(
+        kind='bar', title="Class distributions \n(0: N | 1: Y)")
+    plot.set_xlabel("Diagnosis")
+    plot.set_ylabel("Frequency")
+    plt.show()
         
 
 def add_sidebar():
