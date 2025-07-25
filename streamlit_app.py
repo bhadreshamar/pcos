@@ -47,10 +47,6 @@ def get_model():
     print("Accuracy: ", accuracy_score(y_test, y_pred))
     print("Classification report: \n", classification_report(y_test, y_pred))
     return model, scaler
-
-def add_sidebar():
-  st.sidebar.header("Patient PCOS Dataset Details")
-  data = get_clean_data()
   
 def create_radar_chart(input_data):
     import plotly.graph_objects as go
@@ -194,7 +190,6 @@ def main():
                     page_icon="👩‍⚕️", 
                     layout="wide", 
                     initial_sidebar_state="expanded")
-  add_sidebar()
 
   with st.container():
     st.title("PCOS Disgnosis")
