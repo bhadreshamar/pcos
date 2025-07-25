@@ -12,6 +12,13 @@ def get_clean_data():
   
   return data
 
+
+# Add a title
+st.set_page_config(page_title="Breast Cancer Diagnosis",
+                    page_icon="👩‍⚕️", 
+                    layout="wide", 
+                    initial_sidebar_state="expanded")
+
 st.write ('PCOS')
 
 st.info ('This app builds a machine learning model to detect PCOS')
