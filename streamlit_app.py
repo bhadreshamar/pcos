@@ -84,32 +84,6 @@ def create_input_form(data):
 
     return input_data
 
-
-def create_input_form(data):
-    import streamlit as st
-    st.sidebar.header("Patient PCOS Dataset Details")
-
-    input_data = {}
-    yn_columns = ["PCOS_YN", "Pregnant_YN", "Weight_gain_YN", "Hair_growth_YN",
-                  "Skin_darkening_YN", "Hair_loss_YN", "Pimples_YN",
-                  "Fast_food_YN", "Reg_Exercise_YN"]
-
-    for label, col in slider_labels:
-        if col in yn_columns:
-            input_data[col] = st.sidebar.radio(label, ['Yes', 'No'])
-        elif data[col].dtype == 'object':
-            input_data[col] = st.sidebar.selectbox(label, sorted(data[col].dropna().unique()))
-        else:
-            input_data[col] = st.sidebar.slider(
-                label,
-                float(data[col].min()),
-                float(data[col].max()),
-                float(data[col].mean())
-            )
-
-    return input_data
-
-
 def main():
   st.set_page_config(page_title="Detect PCOS",
                     page_icon="👩‍⚕️", 
