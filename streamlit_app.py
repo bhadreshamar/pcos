@@ -104,7 +104,7 @@ def main():
 
 
 if __name__ == '__main__':
-  main():
+  main()
 
 yn_columns = [
     "PCOS_YN", "Pregnant_YN", "Weight_gain_YN", "Hair_growth_YN",
