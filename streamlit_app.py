@@ -11,15 +11,6 @@ def get_clean_data():
   data['PCOS (Y/N)'] = data['PCOS (Y/N)'].map({ 'Y': 1, 'N': 0 })
   
   return data
-
-with st.container():
-    st.title("PCOS Disgnosis")
-    st.write("Please input current medical history and symptoms. This app predicts PCOS diagnosis using Machine Learning ")
-    col1, col2 = st.columns([4,1])
-    with col1:
-        st.write("Column 1")
-    with col2:
-        st.write("Column 2")
         
 
 def add_sidebar():
