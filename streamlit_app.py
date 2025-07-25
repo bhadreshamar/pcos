@@ -14,7 +14,7 @@ def get_clean_data():
 
 
 # Add a title
-st.set_page_config(page_title="Breast Cancer Diagnosis",
+st.set_page_config(page_title="Detect PCOS",
                     page_icon="👩‍⚕️", 
                     layout="wide", 
                     initial_sidebar_state="expanded")
