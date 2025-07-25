@@ -125,7 +125,7 @@ def create_input_form(data):
     st.sidebar.header("Patient PCOS Dataset Details")
 
     slider_labels = [
-        ("Age (yrs)", "Age_yrs"),
+        (" Age (yrs)", "Age_yrs"),
         ("Weight (Kg)", "Weight_Kg"),
         ("Height (Cm)", "Height_Cm"),
         ("BMI", "BMI"),
