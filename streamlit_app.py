@@ -4,13 +4,17 @@ import pandas as pd
 
 
 def get_clean_data():
-  data = pd.read_csv("Data/PCOS_data_infertility.csv")
-  
-  data = data.drop(['Unnamed: 44', 'Si. No', 'Patient File No.'], axis=1)
-  
-  data['PCOS (Y/N)'] = data['PCOS (Y/N)'].map({ 'Y': 1, 'N': 0 })
-  
-  return data
+    data = pd.read_csv("Data/PCOS_data_infertility.csv")
+
+    # Drop only if the columns exist
+    columns_to_drop = ['Unnamed: 44', 'Si. No', 'Patient File No.']
+    data = data.drop(columns=[col for col in columns_to_drop if col in data.columns])
+
+    # Convert PCOS column to numeric
+    if data['PCOS (Y/N)'].dtype == object:
+        data['PCOS (Y/N)'] = data['PCOS (Y/N)'].map({'Y': 1, 'N': 0})
+
+    return data
 
 def plot_data(df):
     plot = df['PCOS (Y/N)'].value_counts().plot(
