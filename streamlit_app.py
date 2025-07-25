@@ -50,6 +50,76 @@ def add_sidebar():
   st.sidebar.header("Patient PCOS Dataset Details")
   data = get_clean_data()
   
+def create_radar_chart(input_data):
+    import plotly.graph_objects as go
+
+    input_data = get_scaled_values_dict(input_data)
+
+    # Define radar categories
+    hormonal_markers = [
+        ("FSH", "FSH_mIU_mL"),
+        ("LH", "LH_mIU_mL"),
+        ("FSH/LH", "FSH_LH"),
+        ("TSH", "TSH_mIU_L"),
+        ("AMH", "AMH_ng_mL"),
+        ("PRL", "PRL_ng_mL"),
+        ("Vit D3", "VitD3_ng_mL"),
+        ("PRG", "PRG_ng_mL"),
+        ("I β-HCG", "I_beta_HCG_mIU_mL"),
+        ("II β-HCG", "II_beta_HCG_mIU_mL")
+    ]
+
+    anthropometric_markers = [
+        ("BMI", "BMI"),
+        ("Hip", "Hip_inch"),
+        ("Waist", "Waist_inch"),
+        ("Waist:Hip", "Waist_Hip_Ratio"),
+        ("Weight", "Weight_Kg"),
+        ("Height", "Height_Cm")
+    ]
+
+    symptom_markers = [
+        ("Weight gain", "Weight_gain_YN"),
+        ("Hair growth", "Hair_growth_YN"),
+        ("Skin darkening", "Skin_darkening_YN"),
+        ("Hair loss", "Hair_loss_YN"),
+        ("Pimples", "Pimples_YN")
+    ]
+
+    fig = go.Figure()
+
+    def add_trace(group, name):
+        r_values = []
+        labels = []
+        for label, key in group:
+            val = input_data.get(key)
+            if isinstance(val, str):  # Convert 'Yes'/'No' to numeric if needed
+                val = 1.0 if val.lower() == 'yes' else 0.0
+            r_values.append(val)
+            labels.append(label)
+        fig.add_trace(go.Scatterpolar(
+            r=r_values,
+            theta=labels,
+            fill='toself',
+            name=name
+        ))
+
+    add_trace(hormonal_markers, "Hormonal Profile")
+    add_trace(anthropometric_markers, "Anthropometric Measures")
+    add_trace(symptom_markers, "Symptoms")
+
+    fig.update_layout(
+        polar=dict(
+            radialaxis=dict(
+                visible=True,
+                range=[0, 1]
+            )
+        ),
+        showlegend=True,
+        autosize=True
+    )
+
+    return fig
 
 def create_input_form(data):
     import streamlit as st
