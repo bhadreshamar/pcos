@@ -1,8 +1,5 @@
-import streamlit as st
-import pickle
 import pandas as pd
-import plotly.graph_objects as go
-import numpy as np
+import matplotlib.pyplot as plt
 
 def get_clean_data():
     data = pd.read_csv("Data/PCOS_data_infertility.csv")
