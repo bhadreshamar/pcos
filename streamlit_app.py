@@ -14,7 +14,7 @@ def get_clean_data():
 
 def plot_data(df):
     plot = df['PCOS (Y/N)'].value_counts().plot(
-        kind='bar', title="Class distributions \n(0: N | 1: Y)")
+        kind='bar', title="Class distributions \n(0: No | 1: Yes)")
     plot.set_xlabel("Diagnosis")
     plot.set_ylabel("Frequency")
     plt.show()
