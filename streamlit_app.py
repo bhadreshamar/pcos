@@ -86,7 +86,7 @@ def create_input_form(data):
 
 
 yn_columns = [
-    "PCOS_YN", "Pregnant_YN", "Weight_gain_YN", "Hair_growth_YN",
+    "Pregnant_YN", "Weight_gain_YN", "Hair_growth_YN",
     "Skin_darkening_YN", "Hair_loss_YN", "Pimples_YN", "Fast_food_YN", "Reg_Exercise_YN"
 ]
 
