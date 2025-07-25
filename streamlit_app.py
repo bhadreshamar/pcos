@@ -12,14 +12,6 @@ def get_clean_data():
   
   return data
 
-
-# Add a title
-st.set_page_config(page_title="Detect PCOS",
-                    page_icon="👩‍⚕️", 
-                    layout="wide", 
-                    initial_sidebar_state="expanded")
-
-# Set up the structure
 with st.container():
     st.title("PCOS Disgnosis")
     st.write("Please input current medical history and symptoms. This app predicts PCOS diagnosis using Machine Learning ")
@@ -102,3 +94,25 @@ def create_input_form(data):
             input_data[col] = st.sidebar.selectbox(label, sorted(map(str, unique_vals)))
 
     return input_data
+
+
+def main():
+  st.set_page_config(page_title="Detect PCOS",
+                    page_icon="👩‍⚕️", 
+                    layout="wide", 
+                    initial_sidebar_state="expanded")
+  add_sidebar()
+
+  with st.container():
+    st.title("PCOS Disgnosis")
+    st.write("Please input current medical history and symptoms. This app predicts PCOS diagnosis using Machine Learning ")
+    
+    col1, col2 = st.columns([4,1])
+    with col1:
+        st.write("Column 1")
+    with col2:
+        st.write("Column 2")
+
+
+if __name__ == '__main__':
+  main():
