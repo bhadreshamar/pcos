@@ -37,60 +37,72 @@ def add_sidebar():
   
  st.sidebar.header("Patient PCOS Dataset Details")
 
-slider_labels = [
-    ("PCOS (Y/N)", "PCOS_YN"),
-    ("Age (yrs)", "Age_yrs"),
-    ("Weight (Kg)", "Weight_Kg"),
-    ("Height (Cm)", "Height_Cm"),
-    ("BMI", "BMI"),
-    ("Blood Group", "Blood_Group"),
-    ("Pulse rate (bpm)", "Pulse_rate_bpm"),
-    ("RR (breaths/min)", "RR_breaths_min"),
-    ("Hb (g/dl)", "Hb_g_dl"),
-    ("Cycle (R/I)", "Cycle_RI"),
-    ("Cycle length (days)", "Cycle_length_days"),
-    ("Marriage Status (Yrs)", "Marriage_Status_Yrs"),
-    ("Pregnant (Y/N)", "Pregnant_YN"),
-    ("No. of abortions", "No_of_abortions"),
-    ("I beta-HCG (mIU/mL)", "I_beta_HCG_mIU_mL"),
-    ("II beta-HCG (mIU/mL)", "II_beta_HCG_mIU_mL"),
-    ("FSH (mIU/mL)", "FSH_mIU_mL"),
-    ("LH (mIU/mL)", "LH_mIU_mL"),
-    ("FSH/LH", "FSH_LH"),
-    ("Hip (inch)", "Hip_inch"),
-    ("Waist (inch)", "Waist_inch"),
-    ("Waist:Hip Ratio", "Waist_Hip_Ratio"),
-    ("TSH (mIU/L)", "TSH_mIU_L"),
-    ("AMH (ng/mL)", "AMH_ng_mL"),
-    ("PRL (ng/mL)", "PRL_ng_mL"),
-    ("Vit D3 (ng/mL)", "VitD3_ng_mL"),
-    ("PRG (ng/mL)", "PRG_ng_mL"),
-    ("RBS (mg/dl)", "RBS_mg_dl"),
-    ("Weight gain (Y/N)", "Weight_gain_YN"),
-    ("Hair growth (Y/N)", "Hair_growth_YN"),
-    ("Skin darkening (Y/N)", "Skin_darkening_YN"),
-    ("Hair loss (Y/N)", "Hair_loss_YN"),
-    ("Pimples (Y/N)", "Pimples_YN"),
-    ("Fast food (Y/N)", "Fast_food_YN"),
-    ("Reg. Exercise (Y/N)", "Reg_Exercise_YN"),
-    ("BP Systolic (mmHg)", "BP_Systolic_mmHg"),
-    ("BP Diastolic (mmHg)", "BP_Diastolic_mmHg"),
-    ("Follicle No. (L)", "Follicle_No_L"),
-    ("Follicle No. (R)", "Follicle_No_R"),
-    ("Avg. F size (L) (mm)", "Avg_F_size_L_mm"),
-    ("Avg. F size (R) (mm)", "Avg_F_size_R_mm"),
-    ("Endometrium (mm)", "Endometrium_mm"),
-]
+def create_input_form(data):
+    import streamlit as st
 
-  input_dict = {}
+    st.sidebar.header("Patient PCOS Dataset Details")
 
-  for label, key in slider_labels:
-    input_dict[key] = st.sidebar.slider(
-      label,
-      min_value=float(0),
-      max_value=float(data[key].max()),
-      value=float(data[key].mean())
-    )
-    
-  return input_dict
+    slider_labels = [
+        ("Sl. No", "Sl_No"),
+        ("Patient File No.", "Patient_File_No"),
+        ("PCOS (Y/N)", "PCOS_YN"),
+        ("Age (yrs)", "Age_yrs"),
+        ("Weight (Kg)", "Weight_Kg"),
+        ("Height (Cm)", "Height_Cm"),
+        ("BMI", "BMI"),
+        ("Blood Group", "Blood_Group"),
+        ("Pulse rate (bpm)", "Pulse_rate_bpm"),
+        ("RR (breaths/min)", "RR_breaths_min"),
+        ("Hb (g/dl)", "Hb_g_dl"),
+        ("Cycle (R/I)", "Cycle_RI"),
+        ("Cycle length (days)", "Cycle_length_days"),
+        ("Marriage Status (Yrs)", "Marriage_Status_Yrs"),
+        ("Pregnant (Y/N)", "Pregnant_YN"),
+        ("No. of abortions", "No_of_abortions"),
+        ("I beta-HCG (mIU/mL)", "I_beta_HCG_mIU_mL"),
+        ("II beta-HCG (mIU/mL)", "II_beta_HCG_mIU_mL"),
+        ("FSH (mIU/mL)", "FSH_mIU_mL"),
+        ("LH (mIU/mL)", "LH_mIU_mL"),
+        ("FSH/LH", "FSH_LH"),
+        ("Hip (inch)", "Hip_inch"),
+        ("Waist (inch)", "Waist_inch"),
+        ("Waist:Hip Ratio", "Waist_Hip_Ratio"),
+        ("TSH (mIU/L)", "TSH_mIU_L"),
+        ("AMH (ng/mL)", "AMH_ng_mL"),
+        ("PRL (ng/mL)", "PRL_ng_mL"),
+        ("Vit D3 (ng/mL)", "VitD3_ng_mL"),
+        ("PRG (ng/mL)", "PRG_ng_mL"),
+        ("RBS (mg/dl)", "RBS_mg_dl"),
+        ("Weight gain (Y/N)", "Weight_gain_YN"),
+        ("Hair growth (Y/N)", "Hair_growth_YN"),
+        ("Skin darkening (Y/N)", "Skin_darkening_YN"),
+        ("Hair loss (Y/N)", "Hair_loss_YN"),
+        ("Pimples (Y/N)", "Pimples_YN"),
+        ("Fast food (Y/N)", "Fast_food_YN"),
+        ("Reg. Exercise (Y/N)", "Reg_Exercise_YN"),
+        ("BP Systolic (mmHg)", "BP_Systolic_mmHg"),
+        ("BP Diastolic (mmHg)", "BP_Diastolic_mmHg"),
+        ("Follicle No. (L)", "Follicle_No_L"),
+        ("Follicle No. (R)", "Follicle_No_R"),
+        ("Avg. F size (L) (mm)", "Avg_F_size_L_mm"),
+        ("Avg. F size (R) (mm)", "Avg_F_size_R_mm"),
+        ("Endometrium (mm)", "Endometrium_mm"),
+        ("Unnamed Column", "Unnamed_44")
+    ]
 
+    input_data = {}
+
+    for label, col in slider_labels:
+        try:
+            input_data[col] = st.sidebar.slider(
+                label,
+                float(data[col].min()),
+                float(data[col].max()),
+                float(data[col].mean())
+            )
+        except:
+            # For non-numeric fields like Blood Group or Y/N fields, use selectbox
+            unique_vals = data[col].dropna().unique()
+            input_data[col] = st.sidebar.selectbox(label, sorted(map(str, unique_vals)))
+
+    return input_data
