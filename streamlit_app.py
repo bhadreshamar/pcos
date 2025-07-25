@@ -185,6 +185,21 @@ def create_input_form(data):
 
     return input_data
 
+def get_scaled_values_dict(values_dict):
+    # Define a Function to Scale the Values based on the Min and Max of the Predictor in the Training Data
+    data = get_clean_data()
+    X = data.drop(['PCOS (Y/N)'], axis=1)
+
+    scaled_dict = {}
+
+    for key, value in values_dict.items():
+        max_val = X[key].max()
+        min_val = X[key].min()
+        scaled_value = (value - min_val) / (max_val - min_val)
+        scaled_dict[key] = scaled_value
+
+    return scaled_dict
+
 def main():
   st.set_page_config(page_title="Detect PCOS",
                     page_icon="👩‍⚕️", 
