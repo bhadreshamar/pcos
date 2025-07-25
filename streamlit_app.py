@@ -29,8 +29,8 @@ def get_model():
     df = get_clean_data()
 
     # scale predictors and split data
-    X = df.drop(['diagnosis'], axis=1)
-    y = df['diagnosis']
+    X = df.drop(['PCOS (Y/N)'], axis=1)
+    y = df['PCOS (Y/N)']
     from sklearn.preprocessing import StandardScaler
     scaler = StandardScaler()
     X = scaler.fit_transform(X)
@@ -255,3 +255,20 @@ def create_app():
     with col2:
         # load the model
         display_predictions(input_data, model, scaler)
+
+def main():
+    # EDA
+    # df = get_clean_data()
+    # plot_data(df)
+
+    # MODEL
+    # model = get_model()
+    # print("Model: ", model)
+
+    # APP
+    create_app()
+
+
+# Press the green button in the gutter to run the script.
+if __name__ == '__main__':
+    main()
