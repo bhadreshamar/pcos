@@ -200,6 +200,31 @@ def get_scaled_values_dict(values_dict):
 
     return scaled_dict
 
+def display_predictions(input_data, model, scaler):
+    import streamlit as st
+
+    import numpy as np
+    input_array = np.array(list(input_data.values())).reshape(1, -1)
+    input_data_scaled = scaler.transform(input_array)
+
+    st.subheader('PCOS Prediction')
+    st.write("PCOS %: ")
+
+    prediction = model.predict(input_data_scaled)
+    if prediction[0] == 0:
+        st.write("<span class='diagnosis bright-green'>No</span>",
+                 unsafe_allow_html=True)
+    else:
+        st.write("<span class='diagnosis bright-red'>Yes</span>",
+                 unsafe_allow_html=True)
+
+    st.write("Probability of no PCOS: ",
+             model.predict_proba(input_data_scaled)[0][0])
+    st.write("Probability of PCOS: ",
+             model.predict_proba(input_data_scaled)[0][1])
+
+    st.write("This app can assist medical professionals in making a diagnosis, but should not be used as a substitute for a professional diagnosis.")
+
 def main():
   st.set_page_config(page_title="Detect PCOS",
                     page_icon="👩‍⚕️", 
