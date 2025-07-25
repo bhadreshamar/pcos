@@ -8,7 +8,7 @@ def get_clean_data():
   
   data = data.drop(['Unnamed: 44', 'Si. No', 'Patient File No.'], axis=1)
   
-  data['diagnosis'] = data['diagnosis'].map({ 'M': 1, 'B': 0 })
+  data['PCOS (Y/N)'] = data['PCOS (Y/N)'].map({ 'Y': 1, 'N': 0 })
   
   return data
 
