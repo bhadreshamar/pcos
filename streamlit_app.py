@@ -14,11 +14,9 @@ def get_clean_data():
         
 
 def add_sidebar():
-  st.sidebar.header("Cell Nuclei Measurements")
-  
+  st.sidebar.header("Patient PCOS Dataset Details")
   data = get_clean_data()
   
- st.sidebar.header("Patient PCOS Dataset Details")
 
 def create_input_form(data):
     import streamlit as st
