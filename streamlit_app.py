@@ -225,21 +225,33 @@ def display_predictions(input_data, model, scaler):
 
     st.write("This app can assist medical professionals in making a diagnosis, but should not be used as a substitute for a professional diagnosis.")
 
-def main():
-  st.set_page_config(page_title="Detect PCOS",
+def create_app():
+    import streamlit as st
+
+    st.set_page_config(page_title="Detect PCOS",
                     page_icon="👩‍⚕️", 
                     layout="wide", 
                     initial_sidebar_state="expanded")
 
-  with st.container():
-    st.title("PCOS Disgnosis")
-    st.write("Please input current medical history and symptoms. This app predicts PCOS diagnosis using Machine Learning ")
-    
-    col1, col2 = st.columns([4,1])
-    with col1:
-        st.write("Column 1")
-    with col2:
-        st.write("Column 2")
+    # load css
+    with open("./assets/style.css") as f:
+        st.markdown('<style>{}</style>'.format(f.read()),
+                    unsafe_allow_html=True)
 
-if __name__ == '__main__':
-  main()
+    with st.container():
+        st.title("PCOS Diagnosis")
+        st.write("Please input current medical history and symptoms. This app predicts PCOS diagnosis using Machine Learning. ")
+
+    data = get_clean_data()
+    input_data = create_input_form(data)
+
+    model, scaler = get_model()
+    col1, col2 = st.columns([4, 1])
+
+    with col1:
+        radar_chart = create_radar_chart(input_data)
+        st.plotly_chart(radar_chart, use_container_width=True)
+
+    with col2:
+        # load the model
+        display_predictions(input_data, model, scaler)
